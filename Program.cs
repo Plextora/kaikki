@@ -33,16 +33,27 @@ string GetForegroundProcessName()
 
 void RunDiscordRpc()
 {
-    client.SetPresence(new RichPresence
+    Thread.Sleep(1000);
+    
+    Console.WriteLine($"Focused process name: {GetForegroundProcessName()}");
+
+    if (GetForegroundProcessName() != "Unknown")
     {
-        Details = $"This user is using {GetForegroundProcessName()}",
-        State = "Made by Plextora#0033",
-        Assets = new Assets
+        client.SetPresence(new RichPresence
         {
-            LargeImageKey = "kaikki_logo",
-            LargeImageText = "Kaikki Logo"
-        }
-    });
+            Details = $"This user is using {GetForegroundProcessName()}",
+            State = "Made by Plextora#0033",
+            Assets = new Assets
+            {
+                LargeImageKey = "kaikki_logo",
+                LargeImageText = "Kaikki Logo"
+            }
+        });
+    }
+    else
+    {
+        client.ClearPresence();
+    }
 }
 
 void StopDiscordRpc()
@@ -52,10 +63,11 @@ void StopDiscordRpc()
     client.Dispose();
 }
 
-Console.WriteLine($"Focused process name: {GetForegroundProcessName()}");
-
-RunDiscordRpc();
-
-Console.ReadLine();
+Console.WriteLine("Press ESC to stop");
+do {
+    while (! Console.KeyAvailable) {
+        RunDiscordRpc();
+    }       
+} while (Console.ReadKey(true).Key != ConsoleKey.Escape);
 
 StopDiscordRpc();
