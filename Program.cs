@@ -1,10 +1,10 @@
 ﻿using System.Diagnostics;
 using System.Runtime.InteropServices;
 using DiscordRPC;
+using Kaikki;
 
-DiscordRpcClient client;
-client = new DiscordRpcClient("932775385014353970");
-client.Initialize();
+DiscordPresence.Client = new DiscordRpcClient("932775385014353970");
+DiscordPresence.Client.Initialize();
 
 [DllImport("user32.dll")]
 static extern IntPtr GetForegroundWindow();
@@ -31,43 +31,24 @@ string GetForegroundProcessName()
     return "Unknown";
 }
 
-void RunDiscordRpc()
-{
-    Thread.Sleep(1000);
-    
-    Console.WriteLine($"Focused process name: {GetForegroundProcessName()}");
-
-    if (GetForegroundProcessName() != "Unknown")
-    {
-        client.SetPresence(new RichPresence
-        {
-            Details = $"This user is using {GetForegroundProcessName()}",
-            State = "Made by Plextora#0033",
-            Assets = new Assets
-            {
-                LargeImageKey = "kaikki_logo",
-                LargeImageText = "Kaikki Logo"
-            }
-        });
-    }
-    else
-    {
-        client.ClearPresence();
-    }
-}
-
-void StopDiscordRpc()
-{
-    client.ClearPresence();
-    client.Deinitialize();
-    client.Dispose();
-}
-
 Console.WriteLine("Press ESC to stop");
 do {
-    while (! Console.KeyAvailable) {
-        RunDiscordRpc();
+    while (!Console.KeyAvailable) {
+        Thread.Sleep(1000);
+    
+        Console.WriteLine($"Focused process name: {GetForegroundProcessName()}");
+
+        if (GetForegroundProcessName() != "Unknown")
+        {
+            Console.WriteLine(DiscordPresence.RunDiscordRpc(GetForegroundProcessName()) == "Unsupported process"
+                ? "Set default Discord presence"
+                : "Set detailed Discord presence");
+        }
+        else
+        {
+            DiscordPresence.Client.ClearPresence();
+        }
     }       
 } while (Console.ReadKey(true).Key != ConsoleKey.Escape);
 
-StopDiscordRpc();
+DiscordPresence.StopDiscordRpc();
