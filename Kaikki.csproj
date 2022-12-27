@@ -5,6 +5,11 @@
         <TargetFramework>net7.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <ApplicationIcon>Icons\Kaikki.ico</ApplicationIcon>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <FileVersion>1.0.0.0</FileVersion>
+		<PublishTrimmed>true</PublishTrimmed>
+		<RuntimeIdentifier>win10-x64</RuntimeIdentifier>
     </PropertyGroup>
 
     <ItemGroup>
