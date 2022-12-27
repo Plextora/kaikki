@@ -39,6 +39,38 @@ public static class DiscordPresence
                 "ShareX",
                 "ShareX logo",
                 "Set ShareX presence")
+        },
+        {
+            "ShellExperienceHost",
+            new PresenceDetails(
+                "windows",
+                "a Windows component",
+                "Windows logo",
+                "Set ShellExperienceHost presence")
+        },
+        {
+            "StartMenuExperienceHost",
+            new PresenceDetails(
+                "windows",
+                "Windows Start Menu",
+                "Windows logo",
+                "Set Start Menu presence")
+        },
+        {
+            "explorer",
+            new PresenceDetails(
+                "file_explorer",
+                "File Explorer/Task bar",
+                "File explorer logo",
+                "Set explorer presence")
+        },
+        {
+            "SearchApp",
+            new PresenceDetails(
+                "search_app",
+                "Windows search",
+                "Windows Search logo",
+                "Set SearchApp (Windows search) presence")
         }
     };
 
