@@ -6,7 +6,7 @@
 
 Kaikki is a small app made in C# that enables Discord Rich Presence (or RPC) for all of your apps on Windows.
 
-[![Header](https://i.imgur.com/2Yz6HfO.png)](https://github.com/Plextora/kaikki#README)
+[![Demo picture](https://i.imgur.com/Vuhr1sl.png)](https://github.com/Plextora/kaikki#README)
 
 Searching an app? Everyone now knows that. On Firefox? Everyone now knows that. Trying to uninstall Kaikki? (As you probably should) Everyone now knows that.
 
