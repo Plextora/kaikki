@@ -71,7 +71,15 @@ public static class DiscordPresence
                 "Windows search",
                 "Windows Search logo",
                 "Set SearchApp (Windows search) presence")
-        }
+        },
+        {
+            "Taskmgr",
+            new PresenceDetails(
+                "task_manager",
+                "Task Manager",
+                "Task Manager logo",
+                "Set Task Manager presence")
+        },
     };
 
     private static void SetPresence(string name, string displayName, string largeimgtext)
