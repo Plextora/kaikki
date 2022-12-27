@@ -1,12 +1,48 @@
-﻿namespace Kaikki;
+﻿using DiscordRPC;
 
-using DiscordRPC;
+namespace Kaikki;
 
 public static class DiscordPresence
 {
     public static DiscordRpcClient Client = null!;
-    
-    static void SetPresence(string name, string displayName, string largeimgtext)
+
+    private static readonly Dictionary<string, PresenceDetails> SupportedPresenceDict = new()
+    {
+        {
+            "firefox",
+            new PresenceDetails(
+                "firefox",
+                "Firefox",
+                "Firefox logo",
+                "Set Firefox presence")
+        },
+        {
+            "Discord",
+            new PresenceDetails(
+                "discord",
+                "Discord",
+                "Discord logo",
+                "Set Discord presence")
+        },
+        {
+            "rider64",
+            new PresenceDetails(
+                "rider",
+                "Rider IDE",
+                "Rider IDE logo",
+                "Set Rider IDE presence")
+        },
+        {
+            "ShareX",
+            new PresenceDetails(
+                "sharex",
+                "ShareX",
+                "ShareX logo",
+                "Set ShareX presence")
+        }
+    };
+
+    private static void SetPresence(string name, string displayName, string largeimgtext)
     {
         Client.SetPresence(new RichPresence
         {
@@ -22,33 +58,33 @@ public static class DiscordPresence
 
     public static string RunDiscordRpc(string procName)
     {
-        switch (procName)
+        if (SupportedPresenceDict.TryGetValue(procName, out var presenceDetails))
         {
-            case "firefox":
-                SetPresence("firefox", "Firefox", "Firefox logo");
-                return "Set Firefox presence";
-            case "Discord":
-                SetPresence("discord", "Discord", "Discord logo");
-                return "Set Discord presence";
-            case "rider64":
-                SetPresence("rider", "Rider IDE", "Rider IDE logo");
-                return "Set Rider IDE presence";
-            case "ShareX":
-                SetPresence("sharex", "ShareX", "ShareX logo");
-                return "Set ShareX presence";
-            case "Kaikki":
-                Client.ClearPresence();
-                return "User is focused on the Kaikki window. Clearing presence...";
-            default:
-                SetPresence("kaikki_logo", procName, "Kaikki logo");
-                return "Unsupported process";
+            SetPresence(presenceDetails.Name, presenceDetails.DisplayName, presenceDetails.Imgtext);
+            return presenceDetails.ReturnMessage;
         }
+
+        if (procName == "Kaikki")
+        {
+            Client.ClearPresence();
+            return "User is focused on the Kaikki window. Clearing presence...";
+        }
+
+        SetPresence("kaikki_logo", procName, "Kaikki logo");
+        return "Unsupported process";
     }
-    
+
     public static void StopDiscordRpc()
     {
         Client.ClearPresence();
         Client.Deinitialize();
         Client.Dispose();
     }
+
+    private record PresenceDetails(
+        string Name,
+        string DisplayName,
+        string Imgtext,
+        string ReturnMessage
+    );
 }

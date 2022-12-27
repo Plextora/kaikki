@@ -40,9 +40,11 @@ do {
 
         if (GetForegroundProcessName() != "Unknown")
         {
-            Console.WriteLine(DiscordPresence.RunDiscordRpc(GetForegroundProcessName()) == "Unsupported process"
+            string returnValue = DiscordPresence.RunDiscordRpc(GetForegroundProcessName());
+            
+            Console.WriteLine(returnValue == "Unsupported process"
                 ? "Set default Discord presence"
-                : "Set detailed Discord presence");
+                : returnValue);
         }
         else
         {
