@@ -11,6 +11,6 @@ Kaikki is a small app made in C# that enables Discord Rich Presence (or RPC) for
 Searching an app? Everyone now knows that. On Firefox? Everyone now knows that. Trying to uninstall Kaikki? (As you probably should) Everyone now knows that.
 
 # Ok then, how do I install/use this?
-Kaikki at the moment only works on Windows OS. You can download the .exe for Kaikki by [clicking on me](https://github.com/Plextora/kaikki/releases/download/1.0.0/Kaikki.exe) and then double clicking the .exe once it's downloaded. It's as simple as that!
+Kaikki at the moment only works on Windows OS. You can download the .exe for Kaikki by [clicking on me](https://github.com/Plextora/kaikki/releases) and then double clicking the .exe once it's downloaded. It's as simple as that!
 
 If you want to exit out of Kaikki, click on the Kaikki window and press ESC
