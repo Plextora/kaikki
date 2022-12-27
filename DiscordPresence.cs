@@ -33,6 +33,9 @@ public static class DiscordPresence
             case "rider64":
                 SetPresence("rider", "Rider IDE", "Rider IDE logo");
                 return "Set Rider IDE presence";
+            case "Kaikki":
+                Client.ClearPresence();
+                return "User is focused on the Kaikki window. Clearing presence...";
             default:
                 SetPresence("kaikki_logo", procName, "Kaikki logo");
                 return "Unsupported process";
