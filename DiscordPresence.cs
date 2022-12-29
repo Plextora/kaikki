@@ -118,6 +118,12 @@ public static class DiscordPresence
             return "User is focused on the Kaikki window. Clearing presence...";
         }
 
+        if (procName == "Unknown")
+        {
+            Client.ClearPresence();
+            return "Cannot get the process name of focused window. Clearing presence...";
+        }
+
         SetPresence("kaikki_logo", procName, "Kaikki logo");
         return "Unsupported process";
     }
