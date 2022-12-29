@@ -17,6 +17,14 @@ public static class DiscordPresence
                 "Set Firefox presence")
         },
         {
+            "chrome",
+            new PresenceDetails(
+                "chrome",
+                "Google Chrome",
+                "Chrome logo",
+                "Set Chrome presence")
+        },
+        {
             "Discord",
             new PresenceDetails(
                 "discord",
@@ -79,7 +87,7 @@ public static class DiscordPresence
                 "Task Manager",
                 "Task Manager logo",
                 "Set Task Manager presence")
-        },
+        }
     };
 
     private static void SetPresence(string name, string displayName, string largeimgtext)
